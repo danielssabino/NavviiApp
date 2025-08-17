@@ -1,6 +1,6 @@
 import streamlit as st
-from partagesantana_dash_diario import goldensquareDash
-from goldensquare_dash_diario import partageSantanaDash
+from partagesantana_dash_diario import partageSantanaDash
+from goldensquare_dash_diario import goldensquareDash
 
 # Usuários cadastrados (email: senha)
 usuarios = {
