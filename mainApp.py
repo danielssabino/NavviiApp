@@ -4,7 +4,7 @@ from goldensquare_dash_diario import goldensquareDash
 
 # Usuários cadastrados (email: senha)
 usuarios = {
-    "receocai@buddhags.com.br": {"senha": "GoldenSquare@25", "pagina": "GoldenDashDiario"},
+    "recepcao@buddhags.com.br": {"senha": "GoldenSquare@25", "pagina": "GoldenDashDiario"},
     "recepcao@buddhaps.com.br": {"senha": "PartageSantana@25", "pagina": "PartageDashDiario"},
 }
 
@@ -25,7 +25,10 @@ def login():
             st.session_state.logado = True
             st.session_state.usuario = email
             st.session_state.pagina_destino = usuarios[email]["pagina"]
-            st.experimental_rerun()
+            try:
+                st.rerun()
+            except AttributeError:
+                st.experimental_rerun()
         else:
             st.error("Credenciais inválidas. Tente novamente.")
 
