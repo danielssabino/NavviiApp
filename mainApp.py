@@ -1,6 +1,6 @@
 import streamlit as st
-from partagesantana_dash_diario import PSDashDiario
-from goldensquare_dash_diario import GSDashDiario
+from partagesantana_dash_diario import goldensquareDash
+from goldensquare_dash_diario import partageSantanaDash
 
 # Usuários cadastrados (email: senha)
 usuarios = {
@@ -31,9 +31,9 @@ def login():
 
 def router():
     if st.session_state.pagina_destino == "GoldenDashDiario":
-        GSDashDiario()
+        goldensquareDash()
     elif st.session_state.pagina_destino == "PartageDashDiario":
-        PSDashDiario()
+        partageSantanaDash()
     else:
         st.warning("Página não encontrada.")
 
