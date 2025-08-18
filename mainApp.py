@@ -1,11 +1,10 @@
 import streamlit as st
-from partagesantana_dash_diario import partageSantanaDash
-from goldensquare_dash_diario import goldensquareDash
+from dashboard_diario import DashDiario
 
 # Usuários cadastrados (email: senha)
 usuarios = {
-    "recepcao@buddhags.com.br": {"senha": "GoldenSquare@25", "pagina": "GoldenDashDiario"},
-    "recepcao@buddhaps.com.br": {"senha": "PartageSantana@25", "pagina": "PartageDashDiario"},
+    "recepcao@buddhags.com.br": {"senha": "GoldenSquare@25", "pagina": "DashDiario", "unidade":"GoldenSquare", "user":"usrgoldensquare", "database":"dbgoldensquare"},
+    "recepcao@buddhaps.com.br": {"senha": "PartageSantana@25", "pagina": "DashDiario", "unidade":"PartageSantana", "user":"usroperacaobda", "database":"dboperacaobda"},
 }
 
 # Inicializa sessão
@@ -25,6 +24,9 @@ def login():
             st.session_state.logado = True
             st.session_state.usuario = email
             st.session_state.pagina_destino = usuarios[email]["pagina"]
+            st.session_state.unidade = usuarios[email]["unidade"]
+            st.session_state.dbUser = usuarios[email]["user"]
+            st.session_state.dbDataBase = usuarios[email]["database"]
             try:
                 st.rerun()
             except AttributeError:
@@ -33,10 +35,10 @@ def login():
             st.error("Credenciais inválidas. Tente novamente.")
 
 def router():
-    if st.session_state.pagina_destino == "GoldenDashDiario":
-        goldensquareDash()
-    elif st.session_state.pagina_destino == "PartageDashDiario":
-        partageSantanaDash()
+    if st.session_state.pagina_destino == "DashDiario":
+        DashDiario(st.session_state.unidade,st.session_state.dbUser,st.session_state.dbDataBase)
+    #elif st.session_state.pagina_destino == "PartageDashDiario":
+        #DashDiario(st.session_state.unidade)
     else:
         st.warning("Página não encontrada.")
 
