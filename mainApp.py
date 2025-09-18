@@ -27,8 +27,8 @@ if "pagina_destino" not in st.session_state:
 
 def login():
     st.title("🔐 Login")
-    email = st.text_input("Email", value="atendimentos@buddhaps.com.br")
-    senha = st.text_input("Senha", type="password", value="atendimentosPS")
+    email = st.text_input("Email")
+    senha = st.text_input("Senha", type="password")
     if st.button("Entrar"):
         if email in usuarios and senha == usuarios[email]["senha"]:
             st.session_state.logado = True
